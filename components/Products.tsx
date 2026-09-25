@@ -6,65 +6,97 @@ const whatsappNumber = "5527992634978";
 
 const productSections = [
   {
-    id: "religiosa",
-    label: "Linha Religiosa",
-    title: "Peças para espaços de fé e significado.",
+    id: "natal",
+    label: "Natal DVL3D",
+    title: "O fim do ano começa a ganhar forma.",
     description:
-      "Objetos criados para decorar, presentear e preservar momentos importantes.",
+      "Peças para decorar, presentear e personalizar o Natal do seu jeito.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("religiosa"),
+      product.category.toLowerCase().includes("natal"),
+    featured: true,
   },
   {
-    id: "decoracao",
-    label: "Decoração — Coleção MELT",
-    title: "Objetos que transformam o ambiente.",
+    id: "utilidades",
+    label: "Utilidades",
+    title: "Produtos feitos para fazer parte da rotina.",
     description:
-      "Peças esculturais e autorais criadas para levar presença, movimento e personalidade aos espaços.",
+      "Peças funcionais desenvolvidas para resolver necessidades reais do dia a dia.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("decoração"),
+      product.category.toLowerCase().includes("utilidade"),
+    featured: false,
   },
   {
     id: "organizacao",
     label: "Organização",
-    title: "Função e estética para a rotina.",
+    title: "Mais organização para a rotina.",
     description:
-      "Objetos desenvolvidos para manter itens essenciais organizados sem abrir mão do design.",
+      "Produtos pensados para organizar objetos e espaços de forma prática.",
     matches: (product: Product) =>
       product.category.toLowerCase().includes("organização"),
+    featured: false,
+  },
+  {
+    id: "decoracao",
+    label: "Decoração",
+    title: "Peças que transformam espaços.",
+    description:
+      "Objetos autorais e coleções criadas para levar personalidade aos ambientes.",
+    matches: (product: Product) =>
+      product.category.toLowerCase().includes("decoração"),
+    featured: false,
+  },
+  {
+    id: "religiosa",
+    label: "Linha Religiosa",
+    title: "Peças para momentos de fé e significado.",
+    description:
+      "Objetos para decorar, presentear e preservar momentos importantes.",
+    matches: (product: Product) =>
+      product.category.toLowerCase().includes("religiosa"),
+    featured: false,
   },
   {
     id: "pet",
     label: "Linha Pet",
-    title: "Design pensado para animais e tutores.",
+    title: "Produtos para pets e seus tutores.",
     description:
-      "Objetos funcionais e personalizados para fazer parte da rotina dos pets e de seus tutores.",
+      "Peças funcionais pensadas para fazer parte da rotina dos animais.",
     matches: (product: Product) =>
       product.category.toLowerCase().includes("pet"),
+    featured: false,
   },
 ];
 
 function createWhatsAppLink(productName: string) {
   const message = `Olá! Conheci a DVL3D pelo site e gostaria de saber mais sobre o ${productName}.`;
 
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    message,
-  )}`;
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 function getCategoryLabel(category: string) {
-  if (category.toLowerCase().includes("religiosa")) {
-    return "DVL3D Religiosa";
+  const lowerCategory = category.toLowerCase();
+
+  if (lowerCategory.includes("natal")) {
+    return "Natal DVL3D";
   }
 
-  if (category.toLowerCase().includes("decoração")) {
-    return "DVL3D Melt";
+  if (lowerCategory.includes("utilidade")) {
+    return "DVL3D Utilidades";
   }
 
-  if (category.toLowerCase().includes("organização")) {
+  if (lowerCategory.includes("organização")) {
     return "DVL3D Organização";
   }
 
-  if (category.toLowerCase().includes("pet")) {
+  if (lowerCategory.includes("decoração")) {
+    return "DVL3D Melt";
+  }
+
+  if (lowerCategory.includes("religiosa")) {
+    return "DVL3D Religiosa";
+  }
+
+  if (lowerCategory.includes("pet")) {
     return "DVL3D Pet";
   }
 
@@ -225,14 +257,14 @@ export default function Products() {
             </p>
 
             <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] md:text-6xl">
-              Objetos para decorar, organizar e transformar espaços.
+              Produtos para diferentes ideias, espaços e rotinas.
             </h2>
           </div>
 
           <div className="flex items-end lg:justify-end">
             <p className="max-w-lg text-base leading-8 text-zinc-500">
-              Peças produzidas sob encomenda, pensadas para unir significado,
-              função e personalidade em diferentes ambientes.
+              Produtos autorais, peças personalizáveis e soluções produzidas sob
+              encomenda pela DVL3D.
             </p>
           </div>
         </div>
@@ -248,9 +280,21 @@ export default function Products() {
                 key={section.id}
                 className="scroll-mt-24"
               >
-                <div className="mb-12 grid gap-8 border-b border-zinc-200 pb-10 lg:grid-cols-2">
+                <div
+                  className={`mb-12 grid gap-8 border-b pb-10 lg:grid-cols-2 ${
+                    section.featured
+                      ? "border-[#7a1f2b]/30"
+                      : "border-zinc-200"
+                  }`}
+                >
                   <div>
-                    <p className="mb-4 text-xs uppercase tracking-[0.4em] text-zinc-400">
+                    <p
+                      className={`mb-4 text-xs uppercase tracking-[0.4em] ${
+                        section.featured
+                          ? "text-[#7a1f2b]"
+                          : "text-zinc-400"
+                      }`}
+                    >
                       {section.label}
                     </p>
 
@@ -267,18 +311,35 @@ export default function Products() {
                 </div>
 
                 {isEmpty ? (
-                  <div className="border border-zinc-200 bg-zinc-50 px-7 py-16 text-center md:px-12">
-                    <p className="text-xs uppercase tracking-[0.35em] text-zinc-400">
-                      Em desenvolvimento
+                  <div
+                    className={`border px-7 py-16 text-center md:px-12 ${
+                      section.featured
+                        ? "border-[#7a1f2b]/20 bg-[#faf7f5]"
+                        : "border-zinc-200 bg-zinc-50"
+                    }`}
+                  >
+                    <p
+                      className={`text-xs uppercase tracking-[0.35em] ${
+                        section.featured
+                          ? "text-[#7a1f2b]"
+                          : "text-zinc-400"
+                      }`}
+                    >
+                      {section.featured
+                        ? "Coleção chegando"
+                        : "Em desenvolvimento"}
                     </p>
 
                     <h3 className="mt-5 text-3xl font-medium tracking-[-0.04em]">
-                      Novos produtos em breve.
+                      {section.featured
+                        ? "Natal DVL3D em breve."
+                        : "Novos produtos em breve."}
                     </h3>
 
                     <p className="mx-auto mt-5 max-w-xl leading-7 text-zinc-500">
-                      Esta linha já está preparada para receber os próximos
-                      lançamentos da DVL3D.
+                      {section.featured
+                        ? "Estamos preparando os primeiros produtos da coleção de Natal."
+                        : "Esta categoria já está preparada para receber os próximos lançamentos da DVL3D."}
                     </p>
                   </div>
                 ) : (

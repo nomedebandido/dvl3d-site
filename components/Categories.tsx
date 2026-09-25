@@ -1,35 +1,51 @@
 const categories = [
   {
     number: "01",
-    name: "Religiosa",
+    name: "Natal",
     description:
-      "Peças criadas para espaços de fé, oração, celebração e presentes com significado.",
-    href: "/#religiosa",
+      "Peças para decorar, presentear e personalizar o fim do ano.",
+    href: "/#natal",
     status: "Disponível",
   },
   {
     number: "02",
-    name: "Decoração",
+    name: "Utilidades",
     description:
-      "Objetos esculturais e coleções autorais desenvolvidas para transformar ambientes.",
-    href: "/#decoracao",
+      "Peças pensadas para facilitar pequenas tarefas e resolver necessidades do dia a dia.",
+    href: "/#utilidades",
     status: "Disponível",
   },
   {
     number: "03",
     name: "Organização",
     description:
-      "Peças funcionais para organizar objetos da rotina sem abrir mão do design.",
+      "Soluções para organizar objetos, ambientes e rotinas de forma prática e funcional.",
     href: "/#organizacao",
     status: "Disponível",
   },
   {
     number: "04",
+    name: "Decoração",
+    description:
+      "Objetos autorais e peças de destaque para diferentes ambientes.",
+    href: "/#decoracao",
+    status: "Disponível",
+  },
+  {
+    number: "05",
+    name: "Religiosa",
+    description:
+      "Peças para espaços de fé, oração, celebrações e presentes com significado.",
+    href: "/#religiosa",
+    status: "Disponível",
+  },
+  {
+    number: "06",
     name: "Pet",
     description:
-      "Objetos funcionais e personalizados pensados para fazer parte da rotina dos animais e de seus tutores.",
+      "Produtos funcionais pensados para fazer parte da rotina dos animais e de seus tutores.",
     href: "/#pet",
-    status: "Em breve",
+    status: "Disponível",
   },
 ];
 
@@ -43,18 +59,17 @@ export default function Categories() {
         <div className="grid gap-10 border-b border-white/15 pb-14 lg:grid-cols-2">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.4em] text-zinc-500">
-              Coleções
+              Categorias
             </p>
 
             <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] md:text-6xl">
-              Diferentes objetos. A mesma vontade de fazer diferente.
+              Encontre o que combina com o seu momento.
             </h2>
           </div>
 
           <div className="flex items-end lg:justify-end">
             <p className="max-w-lg text-base leading-8 text-zinc-400">
-              Escolha uma categoria para conhecer somente os produtos daquela
-              linha.
+              Explore produtos por categoria e descubra novas peças da DVL3D.
             </p>
           </div>
         </div>
@@ -97,12 +112,11 @@ export default function Categories() {
 
         <div className="mt-14 flex flex-col justify-between gap-8 border-t border-white/15 pt-8 sm:flex-row sm:items-end">
           <p className="max-w-xl text-sm leading-7 text-zinc-500">
-            Novos produtos serão adicionados automaticamente às categorias
-            correspondentes.
+            Novos produtos serão adicionados conforme o catálogo da DVL3D cresce.
           </p>
 
           <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-600">
-            Made Different
+            DVL3D
           </p>
         </div>
       </div>

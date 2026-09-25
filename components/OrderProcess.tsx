@@ -3,25 +3,25 @@ const steps = [
     number: "01",
     title: "Escolha",
     description:
-      "Conheça as peças disponíveis e escolha o produto que combina com o seu espaço ou ocasião.",
+      "Escolha um produto DVL3D ou conte para nós o que você está procurando.",
   },
   {
     number: "02",
     title: "Personalize",
     description:
-      "Fale conosco pelo WhatsApp para definir cores, detalhes e possíveis personalizações.",
+      "Defina cores, detalhes, medidas e possíveis adaptações para deixar a peça do seu jeito.",
   },
   {
     number: "03",
-    title: "Produção",
+    title: "Crie",
     description:
-      "Após a confirmação, sua peça entra em produção com cuidado em cada etapa.",
+      "Se a sua ideia ainda não existe, podemos desenvolver uma peça junto com você.",
   },
   {
     number: "04",
     title: "Receba",
     description:
-      "O pedido é preparado, embalado e enviado conforme as condições combinadas no atendimento.",
+      "Depois da aprovação, produzimos, preparamos e enviamos sua peça conforme o combinado.",
   },
 ];
 
@@ -35,17 +35,17 @@ export default function OrderProcess() {
         <div className="grid gap-10 border-b border-white/15 pb-14 lg:grid-cols-2">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.4em] text-zinc-500">
-              Do pedido à entrega
+              Personalização
             </p>
 
             <h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] md:text-6xl">
-              Feito com você. Produzido pela DVL3D.
+              Feito com você.
             </h2>
           </div>
 
           <p className="max-w-lg self-end text-base leading-8 text-zinc-400 lg:justify-self-end">
-            Cada pedido passa por um atendimento direto para que os detalhes da
-            peça sejam definidos antes da produção.
+            Personalize um produto existente, adapte uma peça para sua
+            necessidade ou traga uma ideia totalmente nova.
           </p>
         </div>
 
@@ -82,17 +82,17 @@ export default function OrderProcess() {
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/15 pt-10 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-xl text-sm leading-7 text-zinc-500">
-            Prazo, disponibilidade, formas de pagamento e envio são informados
-            durante o atendimento.
+            Possibilidades de personalização, prazo, valor e envio são
+            definidos durante o atendimento.
           </p>
 
           <a
-            href="https://wa.me/5527992634978?text=Ol%C3%A1%21%20Conheci%20a%20DVL3D%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20pedido."
+            href="https://wa.me/5527992634978?text=Ol%C3%A1%21%20Tenho%20uma%20ideia%20e%20gostaria%20de%20fazer%20uma%20pe%C3%A7a%20personalizada%20com%20a%20DVL3D."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-medium text-black transition-all duration-300 hover:scale-[1.03] hover:bg-zinc-200"
           >
-            Começar um pedido
+            Quero personalizar
             <span aria-hidden="true">↗</span>
           </a>
         </div>

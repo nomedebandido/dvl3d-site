@@ -1,8 +1,8 @@
 const items = [
   "Produção própria",
-  "Cores personalizáveis",
-  "Atendimento direto",
-  "Envio para todo o Brasil",
+  "Personalização",
+  "Projetos sob medida",
+  "Natal DVL3D",
 ];
 
 export default function TrustBar() {

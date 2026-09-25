@@ -10,19 +10,19 @@ const links = [
   },
   {
     label: "Produtos",
-    href: "/produtos",
+    href: "/#produtos",
   },
   {
-    label: "Coleções",
-    href: "/colecoes",
+    label: "Natal",
+    href: "/#natal",
   },
   {
-    label: "Sobre",
-    href: "/sobre",
+    label: "Personalize",
+    href: "/#como-funciona",
   },
   {
-    label: "Como pedir",
-    href: "/como-pedir",
+    label: "Categorias",
+    href: "/#categorias",
   },
 ];
 
@@ -69,7 +69,11 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link group relative py-3 text-sm text-zinc-600 transition-colors duration-300 hover:text-black"
+                className={`nav-link group relative py-3 text-sm transition-colors duration-300 hover:text-black ${
+                  link.label === "Natal"
+                    ? "font-medium text-[#7a1f2b]"
+                    : "text-zinc-600"
+                }`}
               >
                 <span className="relative z-10 inline-block transition-transform duration-300 group-hover:-translate-y-px">
                   {link.label}
@@ -77,7 +81,11 @@ export default function Navbar() {
 
                 <span
                   aria-hidden="true"
-                  className="nav-link-line absolute bottom-[5px] left-0 h-px w-full origin-left scale-x-0 bg-black transition-transform duration-500 group-hover:scale-x-100"
+                  className={`nav-link-line absolute bottom-[5px] left-0 h-px w-full origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100 ${
+                    link.label === "Natal"
+                      ? "bg-[#7a1f2b]"
+                      : "bg-black"
+                  }`}
                 />
 
                 <span
@@ -149,7 +157,13 @@ export default function Navbar() {
                     {String(index + 1).padStart(2, "0")}
                   </span>
 
-                  <span className="text-4xl font-medium tracking-[-0.04em] transition-transform duration-300 group-active:translate-x-2">
+                  <span
+                    className={`text-4xl font-medium tracking-[-0.04em] transition-transform duration-300 group-active:translate-x-2 ${
+                      link.label === "Natal"
+                        ? "text-[#c98c92]"
+                        : "text-white"
+                    }`}
+                  >
                     {link.label}
                   </span>
                 </div>
@@ -183,7 +197,7 @@ export default function Navbar() {
               </a>
 
               <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-600">
-                Objetos autorais
+                DVL3D
               </p>
             </div>
           </div>

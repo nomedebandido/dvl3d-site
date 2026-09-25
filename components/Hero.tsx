@@ -3,6 +3,9 @@ import Image from "next/image";
 const whatsappLink =
   "https://wa.me/5527992634978?text=Ol%C3%A1%21%20Conheci%20a%20DVL3D%20pelo%20site%20e%20gostaria%20de%20fazer%20um%20pedido.";
 
+const personalizationLink =
+  "https://wa.me/5527992634978?text=Ol%C3%A1%21%20Tenho%20uma%20ideia%20e%20gostaria%20de%20fazer%20uma%20pe%C3%A7a%20personalizada%20com%20a%20DVL3D.";
+
 export default function Hero() {
   return (
     <section className="overflow-hidden bg-white text-black">
@@ -14,35 +17,37 @@ export default function Hero() {
                 <span className="hero-line h-px w-10 bg-black" />
 
                 <p className="text-xs uppercase tracking-[0.4em] text-zinc-500">
-                  Design e decoração
+                  DVL3D
                 </p>
               </div>
 
               <p className="hidden text-[10px] uppercase tracking-[0.35em] text-zinc-400 sm:block">
-                DVL3D / 2026
+                Feito sob encomenda / 2026
               </p>
             </div>
 
             <div className="mt-14">
               <p className="hero-reveal hero-delay-2 mb-5 text-[10px] uppercase tracking-[0.4em] text-zinc-400">
-                Objetos autorais
+                Produtos • Personalização • Ideias
               </p>
 
               <h1 className="hero-reveal hero-delay-3 max-w-3xl text-6xl font-medium leading-[0.88] tracking-[-0.07em] sm:text-7xl lg:text-[6.8vw]">
-                Formas que mudam o ambiente.
+                Sua ideia.
+                <br />
+                Do seu jeito.
               </h1>
             </div>
 
             <div className="hero-reveal hero-delay-4 mt-10 grid gap-8 border-t border-zinc-200 pt-8 md:grid-cols-[1fr_auto] md:items-end">
               <p className="max-w-xl text-base leading-8 text-zinc-600 md:text-lg md:leading-9">
-                Peças criadas para unir presença, função e personalidade em
-                diferentes espaços.
+                Produtos DVL3D, personalizações e peças feitas sob encomenda
+                para diferentes espaços, rotinas e ideias.
               </p>
 
               <p className="text-left text-[10px] uppercase leading-6 tracking-[0.3em] text-zinc-400 md:text-right">
                 Produção
                 <br />
-                sob encomenda
+                própria
               </p>
             </div>
 
@@ -62,12 +67,12 @@ export default function Hero() {
               </a>
 
               <a
-                href={whatsappLink}
+                href={personalizationLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-4 rounded-full border border-zinc-300 px-8 py-4 text-sm font-medium text-black transition-all duration-300 hover:border-black active:scale-[0.98]"
               >
-                Fazer um pedido
+                Quero personalizar
 
                 <span
                   aria-hidden="true"
@@ -82,18 +87,12 @@ export default function Hero() {
           <div className="hero-reveal hero-delay-6 mt-20 grid grid-cols-1 gap-6 border-t border-zinc-200 pt-7 min-[420px]:grid-cols-3 min-[420px]:gap-0">
             <div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-400">
-                Processo
+                Produtos
               </p>
 
-              <p className="mt-3 text-sm text-zinc-700">Sob encomenda</p>
-            </div>
-
-            <div className="min-[420px]:border-l min-[420px]:border-zinc-200 min-[420px]:pl-5">
-              <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-400">
-                Acabamento
+              <p className="mt-3 text-sm text-zinc-700">
+                Criados pela DVL3D
               </p>
-
-              <p className="mt-3 text-sm text-zinc-700">Feito com cuidado</p>
             </div>
 
             <div className="min-[420px]:border-l min-[420px]:border-zinc-200 min-[420px]:pl-5">
@@ -101,7 +100,19 @@ export default function Hero() {
                 Personalização
               </p>
 
-              <p className="mt-3 text-sm text-zinc-700">Cores e detalhes</p>
+              <p className="mt-3 text-sm text-zinc-700">
+                Cores e detalhes
+              </p>
+            </div>
+
+            <div className="min-[420px]:border-l min-[420px]:border-zinc-200 min-[420px]:pl-5">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-400">
+                Sua ideia
+              </p>
+
+              <p className="mt-3 text-sm text-zinc-700">
+                Projetos sob medida
+              </p>
             </div>
           </div>
         </div>
@@ -110,7 +121,7 @@ export default function Hero() {
           <div className="relative min-h-[480px] overflow-hidden bg-zinc-100 sm:min-h-[560px] lg:min-h-full">
             <Image
               src="/images/kit-nossa-senhora.webp"
-              alt="Kit Nossa Senhora produzido pela DVL3D"
+              alt="Produto produzido pela DVL3D"
               fill
               priority
               unoptimized
@@ -131,9 +142,9 @@ export default function Hero() {
             </div>
 
             <div className="hero-side-label absolute right-5 top-24 text-right text-[10px] uppercase leading-6 tracking-[0.3em] text-white/65 sm:right-6 sm:top-6 md:right-10 md:top-10">
-              Linha
+              Produto
               <br />
-              Religiosa
+              DVL3D
             </div>
 
             <div className="hero-image-footer absolute bottom-6 left-5 right-5 flex items-end justify-between gap-4 text-white sm:left-7 sm:right-7 md:bottom-10 md:left-10 md:right-10">
