@@ -20,9 +20,12 @@ function createGalleryId(productName: string) {
 export default function ProductGallery({
   images,
   productName,
-  imagePosition = "object-center",
 }: ProductGalleryProps) {
   const galleryId = createGalleryId(productName);
+
+  const isNatal = images.some((image) =>
+    image.includes("/images/natal/"),
+  );
 
   const galleryStyles = images
     .map(
@@ -48,15 +51,24 @@ export default function ProductGallery({
 
   if (images.length === 0) {
     return (
-      <div className="flex min-h-[520px] items-center justify-center bg-zinc-100 text-sm text-zinc-500">
+      <div
+        className={`flex min-h-[420px] items-center justify-center text-sm md:min-h-[520px] ${
+          isNatal
+            ? "bg-transparent text-white/50"
+            : "bg-zinc-100 text-zinc-500"
+        }`}
+      >
         Imagem indisponível
       </div>
     );
   }
 
   return (
-    <div className="product-gallery relative grid gap-3 bg-zinc-100 p-3 md:p-5">
-      {/* Controles nativos: funcionam sem JavaScript */}
+    <div
+      className={`product-gallery relative grid gap-3 p-3 md:p-5 ${
+        isNatal ? "bg-transparent" : "bg-zinc-100"
+      }`}
+    >
       {images.map((image, index) => (
         <input
           key={`control-${image}-${index}`}
@@ -64,34 +76,52 @@ export default function ProductGallery({
           type="radio"
           name={galleryId}
           defaultChecked={index === 0}
-          className="product-gallery-control pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
+          className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         />
       ))}
 
-      {/* Imagem principal */}
-      <div className="product-gallery-main relative min-h-[520px] overflow-hidden bg-zinc-200 md:min-h-[700px] lg:min-h-[calc(100svh-115px)]">
+      <div
+        className={`product-gallery-main relative min-h-[420px] overflow-hidden md:min-h-[560px] lg:min-h-[72svh] ${
+          isNatal ? "bg-transparent" : "bg-zinc-200"
+        }`}
+      >
         {images.map((image, index) => (
-          <Image
-            key={`main-${image}-${index}`}
-            src={image}
-            alt={`${productName} — imagem ${index + 1}`}
-            fill
-            priority={index === 0}
-            unoptimized
-            sizes="(max-width: 1024px) 100vw, 50vw"
+          <div
+            key={`main-wrap-${image}-${index}`}
             data-image-index={index}
-            className={`product-gallery-image pointer-events-none object-cover ${imagePosition}`}
-          />
+            className="product-gallery-image absolute inset-0 z-0 p-4 md:p-8 lg:p-10"
+          >
+            <div className="relative h-full w-full">
+              <Image
+                src={image}
+                alt={`${productName} — imagem ${index + 1}`}
+                fill
+                priority={index === 0}
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="pointer-events-none object-contain object-top"
+              />
+            </div>
+          </div>
         ))}
 
-        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+        <div
+          className={`pointer-events-none absolute inset-0 z-10 ${
+            isNatal
+              ? "bg-gradient-to-t from-black/5 via-transparent to-transparent"
+              : "bg-gradient-to-t from-black/12 via-transparent to-transparent"
+          }`}
+        />
 
-        <p className="pointer-events-none absolute bottom-6 left-6 z-20 text-[10px] uppercase tracking-[0.3em] text-white/80">
+        <p
+          className={`pointer-events-none absolute bottom-6 left-6 z-20 text-[10px] uppercase tracking-[0.3em] ${
+            isNatal ? "text-white/55" : "text-white/80"
+          }`}
+        >
           Imagem do produto
         </p>
       </div>
 
-      {/* Miniaturas */}
       {images.length > 1 && (
         <div className="product-gallery-thumbnails grid grid-cols-3 gap-3">
           {images.map((image, index) => (
@@ -100,7 +130,9 @@ export default function ProductGallery({
               htmlFor={`${galleryId}-${index}`}
               aria-label={`Ver imagem ${index + 1} de ${productName}`}
               data-thumbnail-index={index}
-              className="relative aspect-[4/3] cursor-pointer touch-manipulation select-none overflow-hidden border-2 border-transparent opacity-55 transition-all duration-300 active:scale-[0.98]"
+              className={`relative aspect-[4/3] cursor-pointer touch-manipulation select-none overflow-hidden border-2 border-transparent opacity-55 transition-all duration-300 active:scale-[0.98] ${
+                isNatal ? "bg-transparent" : "bg-zinc-200"
+              }`}
             >
               <Image
                 src={image}
@@ -108,7 +140,7 @@ export default function ProductGallery({
                 fill
                 unoptimized
                 sizes="(max-width: 768px) 33vw, 180px"
-                className={`pointer-events-none object-cover ${imagePosition}`}
+                className="pointer-events-none object-cover object-center"
               />
             </label>
           ))}

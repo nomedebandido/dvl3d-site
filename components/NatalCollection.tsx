@@ -4,6 +4,12 @@ import { products } from "@/data/products";
 
 const whatsappNumber = "5527992634978";
 
+const wideProductSlugs = new Set([
+  "porta-guardanapos-natalinos",
+  "enfeite-natal-personalizado",
+  "contagem-regressiva-natal",
+]);
+
 const snowflakes = Array.from({ length: 120 }, (_, index) => ({
   left: `${(index * 4.2) % 100}%`,
   delay: `${-(index % 20)}s`,
@@ -14,7 +20,9 @@ const snowflakes = Array.from({ length: 120 }, (_, index) => ({
 function createWhatsAppLink(productName: string) {
   const message = `Olá! Conheci a coleção de Natal da DVL3D pelo site e gostaria de saber mais sobre o ${productName}.`;
 
-  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    message,
+  )}`;
 }
 
 export default function NatalCollection() {
@@ -66,75 +74,87 @@ export default function NatalCollection() {
         </div>
 
         <div className="grid gap-x-7 gap-y-14 sm:grid-cols-2 xl:grid-cols-3">
-          {natalProducts.map((product, index) => (
-            <article key={product.slug} className="group">
-              <a
-                href={`/produtos/${product.slug}`}
-                className="block overflow-hidden border border-white/15 bg-transparent"
-              >
-                <div className="relative aspect-[4/4.4] overflow-hidden bg-[#5b0f1a]">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                    className={`object-cover ${product.imagePosition} transition-transform duration-700 group-hover:scale-[1.035]`}
-                  />
+          {natalProducts.map((product, index) => {
+            const isWideProduct = wideProductSlugs.has(
+              product.slug,
+            );
 
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+            return (
+              <article key={product.slug} className="group">
+                <a
+                  href={`/produtos/${product.slug}`}
+                  className="block overflow-hidden border border-white/15 bg-transparent"
+                >
+                  <div className="relative aspect-[4/4.4] overflow-hidden bg-[#5b0f1a]">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      className={`${
+                        isWideProduct
+                          ? "object-contain p-3 sm:p-4"
+                          : "object-cover"
+                      } ${
+                        product.imagePosition
+                      } transition-transform duration-700 group-hover:scale-[1.035]`}
+                    />
 
-                  <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-[9px] uppercase tracking-[0.3em] text-white backdrop-blur-md">
-                    Natal DVL3D
-                  </span>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
-                  <span className="absolute bottom-5 right-5 text-xs text-white/65">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-
-                <div className="bg-[#5b0f1a] p-6 md:p-7">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-white/40">
-                      {product.category}
-                    </p>
-
-                    <p className="text-[10px] text-white/40">
-                      {product.code}
-                    </p>
-                  </div>
-
-                  <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em]">
-                    {product.name}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-7 text-white/65">
-                    {product.shortDescription}
-                  </p>
-
-                  <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-                    <span className="text-sm font-medium">
-                      Ver produto
+                    <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-[9px] uppercase tracking-[0.3em] text-white backdrop-blur-md">
+                      Natal DVL3D
                     </span>
 
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:translate-x-1">
-                      →
+                    <span className="absolute bottom-5 right-5 text-xs text-white/65">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                </div>
-              </a>
 
-              <a
-                href={createWhatsAppLink(product.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 flex items-center justify-center gap-3 rounded-full bg-black px-5 py-3 text-xs font-medium text-white transition-all duration-300 hover:scale-[1.01] hover:bg-zinc-900"
-              >
-                Pedir pelo WhatsApp
-                <span>↗</span>
-              </a>
-            </article>
-          ))}
+                  <div className="bg-[#5b0f1a] p-6 md:p-7">
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-[9px] uppercase tracking-[0.3em] text-white/40">
+                        {product.category}
+                      </p>
+
+                      <p className="text-[10px] text-white/40">
+                        {product.code}
+                      </p>
+                    </div>
+
+                    <h3 className="mt-5 text-2xl font-medium tracking-[-0.035em]">
+                      {product.name}
+                    </h3>
+
+                    <p className="mt-4 text-sm leading-7 text-white/65">
+                      {product.shortDescription}
+                    </p>
+
+                    <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
+                      <span className="text-sm font-medium">
+                        Ver produto
+                      </span>
+
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href={createWhatsAppLink(product.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 flex items-center justify-center gap-3 rounded-full bg-black px-5 py-3 text-xs font-medium text-white transition-all duration-300 hover:scale-[1.01] hover:bg-zinc-900"
+                >
+                  Pedir pelo WhatsApp
+                  <span>↗</span>
+                </a>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-28 flex flex-col gap-8 border-t border-white/15 pt-12 md:flex-row md:items-center md:justify-between">
