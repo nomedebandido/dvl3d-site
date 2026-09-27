@@ -6,64 +6,44 @@ const whatsappNumber = "5527992634978";
 
 const productSections = [
   {
-    id: "natal",
-    label: "Natal DVL3D",
-    title: "O fim do ano começa a ganhar forma.",
+    id: "religiosa",
+    label: "Linha Religiosa",
+    title: "Peças para espaços de fé e significado.",
     description:
-      "Peças para decorar, presentear e personalizar o Natal do seu jeito.",
+      "Objetos criados para decorar, presentear e preservar momentos importantes.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("natal"),
-    featured: true,
-  },
-  {
-    id: "utilidades",
-    label: "Utilidades",
-    title: "Produtos feitos para fazer parte da rotina.",
-    description:
-      "Peças funcionais desenvolvidas para resolver necessidades reais do dia a dia.",
-    matches: (product: Product) =>
-      product.category.toLowerCase().includes("utilidade"),
-    featured: false,
-  },
-  {
-    id: "organizacao",
-    label: "Organização",
-    title: "Mais organização para a rotina.",
-    description:
-      "Produtos pensados para organizar objetos e espaços de forma prática.",
-    matches: (product: Product) =>
-      product.category.toLowerCase().includes("organização"),
-    featured: false,
+      product.category.toLowerCase().includes("religiosa") &&
+      !product.category.toLowerCase().includes("natal"),
   },
   {
     id: "decoracao",
     label: "Decoração",
-    title: "Peças que transformam espaços.",
+    title: "Objetos que transformam o ambiente.",
     description:
-      "Objetos autorais e coleções criadas para levar personalidade aos ambientes.",
+      "Peças criadas para levar presença, movimento e personalidade aos espaços.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("decoração"),
-    featured: false,
+      product.category.toLowerCase().includes("decoração") &&
+      !product.category.toLowerCase().includes("natal"),
   },
   {
-    id: "religiosa",
-    label: "Linha Religiosa",
-    title: "Peças para momentos de fé e significado.",
+    id: "organizacao",
+    label: "Organização",
+    title: "Função e estética para a rotina.",
     description:
-      "Objetos para decorar, presentear e preservar momentos importantes.",
+      "Objetos desenvolvidos para manter itens essenciais organizados sem abrir mão do design.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("religiosa"),
-    featured: false,
+      product.category.toLowerCase().includes("organização") &&
+      !product.category.toLowerCase().includes("natal"),
   },
   {
     id: "pet",
     label: "Linha Pet",
-    title: "Produtos para pets e seus tutores.",
+    title: "Design pensado para animais e tutores.",
     description:
-      "Peças funcionais pensadas para fazer parte da rotina dos animais.",
+      "Objetos funcionais e personalizados para fazer parte da rotina dos pets e de seus tutores.",
     matches: (product: Product) =>
-      product.category.toLowerCase().includes("pet"),
-    featured: false,
+      product.category.toLowerCase().includes("pet") &&
+      !product.category.toLowerCase().includes("natal"),
   },
 ];
 
@@ -74,29 +54,19 @@ function createWhatsAppLink(productName: string) {
 }
 
 function getCategoryLabel(category: string) {
-  const lowerCategory = category.toLowerCase();
-
-  if (lowerCategory.includes("natal")) {
-    return "Natal DVL3D";
-  }
-
-  if (lowerCategory.includes("utilidade")) {
-    return "DVL3D Utilidades";
-  }
-
-  if (lowerCategory.includes("organização")) {
-    return "DVL3D Organização";
-  }
-
-  if (lowerCategory.includes("decoração")) {
-    return "DVL3D Melt";
-  }
-
-  if (lowerCategory.includes("religiosa")) {
+  if (category.toLowerCase().includes("religiosa")) {
     return "DVL3D Religiosa";
   }
 
-  if (lowerCategory.includes("pet")) {
+  if (category.toLowerCase().includes("decoração")) {
+    return "DVL3D Decoração";
+  }
+
+  if (category.toLowerCase().includes("organização")) {
+    return "DVL3D Organização";
+  }
+
+  if (category.toLowerCase().includes("pet")) {
     return "DVL3D Pet";
   }
 
@@ -129,16 +99,16 @@ function ProductCard({
           unoptimized
           priority={index === 0}
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className={`pointer-events-none object-cover ${product.imagePosition} transition-transform duration-[1200ms] group-hover/image:scale-[1.025] group-active/image:scale-[1.015]`}
+          className={`pointer-events-none object-cover ${product.imagePosition} transition-transform duration-[1200ms] group-hover/image:scale-[1.025]`}
         />
 
         <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
 
-        <div className="pointer-events-none absolute left-6 top-6 z-20 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white backdrop-blur-md md:left-8 md:top-8">
+        <div className="pointer-events-none absolute left-6 top-6 z-20 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white backdrop-blur-md">
           Sob encomenda
         </div>
 
-        <div className="pointer-events-none absolute bottom-7 left-7 z-20 md:bottom-9 md:left-9">
+        <div className="pointer-events-none absolute bottom-7 left-7 z-20">
           <p className="text-[10px] uppercase tracking-[0.3em] text-white/65">
             {categoryLabel}
           </p>
@@ -146,7 +116,7 @@ function ProductCard({
           <p className="mt-2 text-xs text-white/90">{product.code}</p>
         </div>
 
-        <div className="pointer-events-none absolute bottom-7 right-7 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg text-black shadow-lg transition-transform duration-300 group-hover/image:scale-110 group-active/image:scale-95 md:bottom-9 md:right-9">
+        <div className="pointer-events-none absolute bottom-7 right-7 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg text-black shadow-lg">
           →
         </div>
       </a>
@@ -199,10 +169,6 @@ function ProductCard({
               <p className="text-sm leading-7 text-zinc-700">
                 {product.colors}
               </p>
-
-              <p className="mt-2 text-sm leading-7 text-zinc-500">
-                Prazo e disponibilidade informados durante o atendimento.
-              </p>
             </div>
           </div>
 
@@ -219,23 +185,23 @@ function ProductCard({
           )}
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
           <a
             href={productUrl}
-            className="inline-flex touch-manipulation items-center justify-center gap-3 rounded-full bg-black px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.03] hover:bg-zinc-800 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-3 rounded-full bg-black px-7 py-4 text-sm font-medium text-white transition-all duration-300 hover:scale-[1.03] hover:bg-zinc-800"
           >
             Ver detalhes
-            <span aria-hidden="true">→</span>
+            <span>→</span>
           </a>
 
           <a
             href={createWhatsAppLink(product.name)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex touch-manipulation items-center justify-center gap-3 rounded-full border border-zinc-300 px-7 py-4 text-sm font-medium transition-all duration-300 hover:border-black active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-3 rounded-full border border-zinc-300 px-7 py-4 text-sm font-medium transition-all duration-300 hover:border-black"
           >
             Pedir pelo WhatsApp
-            <span aria-hidden="true">↗</span>
+            <span>↗</span>
           </a>
         </div>
       </div>
@@ -253,18 +219,18 @@ export default function Products() {
         <div className="mb-24 grid gap-10 border-b border-zinc-200 pb-14 lg:grid-cols-2">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.4em] text-zinc-500">
-              Produtos DVL3D
+              Além do Natal
             </p>
 
             <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] md:text-6xl">
-              Produtos para diferentes ideias, espaços e rotinas.
+              DVL3D para todos os momentos.
             </h2>
           </div>
 
           <div className="flex items-end lg:justify-end">
             <p className="max-w-lg text-base leading-8 text-zinc-500">
-              Produtos autorais, peças personalizáveis e soluções produzidas sob
-              encomenda pela DVL3D.
+              Explore nossas outras linhas de decoração, organização,
+              utilidades, produtos religiosos e itens para pets.
             </p>
           </div>
         </div>
@@ -272,7 +238,10 @@ export default function Products() {
         <div className="space-y-32">
           {productSections.map((section) => {
             const sectionProducts = products.filter(section.matches);
-            const isEmpty = sectionProducts.length === 0;
+
+            if (sectionProducts.length === 0) {
+              return null;
+            }
 
             return (
               <div
@@ -280,21 +249,9 @@ export default function Products() {
                 key={section.id}
                 className="scroll-mt-24"
               >
-                <div
-                  className={`mb-12 grid gap-8 border-b pb-10 lg:grid-cols-2 ${
-                    section.featured
-                      ? "border-[#7a1f2b]/30"
-                      : "border-zinc-200"
-                  }`}
-                >
+                <div className="mb-12 grid gap-8 border-b border-zinc-200 pb-10 lg:grid-cols-2">
                   <div>
-                    <p
-                      className={`mb-4 text-xs uppercase tracking-[0.4em] ${
-                        section.featured
-                          ? "text-[#7a1f2b]"
-                          : "text-zinc-400"
-                      }`}
-                    >
+                    <p className="mb-4 text-xs uppercase tracking-[0.4em] text-zinc-400">
                       {section.label}
                     </p>
 
@@ -310,49 +267,15 @@ export default function Products() {
                   </div>
                 </div>
 
-                {isEmpty ? (
-                  <div
-                    className={`border px-7 py-16 text-center md:px-12 ${
-                      section.featured
-                        ? "border-[#7a1f2b]/20 bg-[#faf7f5]"
-                        : "border-zinc-200 bg-zinc-50"
-                    }`}
-                  >
-                    <p
-                      className={`text-xs uppercase tracking-[0.35em] ${
-                        section.featured
-                          ? "text-[#7a1f2b]"
-                          : "text-zinc-400"
-                      }`}
-                    >
-                      {section.featured
-                        ? "Coleção chegando"
-                        : "Em desenvolvimento"}
-                    </p>
-
-                    <h3 className="mt-5 text-3xl font-medium tracking-[-0.04em]">
-                      {section.featured
-                        ? "Natal DVL3D em breve."
-                        : "Novos produtos em breve."}
-                    </h3>
-
-                    <p className="mx-auto mt-5 max-w-xl leading-7 text-zinc-500">
-                      {section.featured
-                        ? "Estamos preparando os primeiros produtos da coleção de Natal."
-                        : "Esta categoria já está preparada para receber os próximos lançamentos da DVL3D."}
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    {sectionProducts.map((product, index) => (
-                      <ProductCard
-                        key={product.slug}
-                        product={product}
-                        index={index}
-                      />
-                    ))}
-                  </div>
-                )}
+                <div>
+                  {sectionProducts.map((product, index) => (
+                    <ProductCard
+                      key={product.slug}
+                      product={product}
+                      index={index}
+                    />
+                  ))}
+                </div>
               </div>
             );
           })}

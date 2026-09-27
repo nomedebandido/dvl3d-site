@@ -1,10 +1,13 @@
+import BrandTransition from "@/components/BrandTransition";
 import Categories from "@/components/Categories";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
+import NatalCollection from "@/components/NatalCollection";
 import Navbar from "@/components/Navbar";
 import OrderProcess from "@/components/OrderProcess";
 import Products from "@/components/Products";
+import Reveal from "@/components/Reveal";
 import TrustBar from "@/components/TrustBar";
 
 export default function Home() {
@@ -14,15 +17,29 @@ export default function Home() {
 
       <Hero />
 
-      <TrustBar />
+      <NatalCollection />
 
-      <Products />
+      <BrandTransition />
 
-      <Categories />
+      <Reveal>
+        <TrustBar />
+      </Reveal>
 
-      <OrderProcess />
+      <Reveal>
+        <Products />
+      </Reveal>
 
-      <Footer />
+      <Reveal>
+        <Categories />
+      </Reveal>
+
+      <Reveal>
+        <OrderProcess />
+      </Reveal>
+
+      <Reveal>
+        <Footer />
+      </Reveal>
 
       <FloatingWhatsApp />
     </main>
