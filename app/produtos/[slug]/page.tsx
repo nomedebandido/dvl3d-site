@@ -78,17 +78,25 @@ export async function generateMetadata({
 function getRecommendedProducts(
   product: Product,
   isNatal: boolean,
-) {
+): Product[] {
   const preferredSlugs = isNatal
     ? natalRecommendationSlugs
     : normalRecommendationSlugs;
 
-  const preferredProducts = preferredSlugs
-    .map((slug) => products.find((item) => item.slug === slug))
-    .filter(
-      (item): item is Product =>
-        Boolean(item) && item.slug !== product.slug,
-    );
+  const preferredProducts = preferredSlugs.reduce<Product[]>(
+    (result, slug) => {
+      const item = products.find(
+        (candidate) => candidate.slug === slug,
+      );
+
+      if (item && item.slug !== product.slug) {
+        result.push(item);
+      }
+
+      return result;
+    },
+    [],
+  );
 
   const fallbackProducts = products.filter((item) => {
     if (item.slug === product.slug) {
@@ -676,7 +684,9 @@ export default async function ProductPage({
                             : "border-zinc-200"
                         }`}
                       >
-                        <span>Ver detalhes</span>
+                        <span>
+                          Ver detalhes
+                        </span>
 
                         <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg text-white transition-transform duration-300 group-hover:translate-x-1">
                           →
